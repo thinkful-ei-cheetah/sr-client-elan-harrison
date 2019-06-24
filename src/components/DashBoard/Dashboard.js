@@ -2,6 +2,7 @@ import React from 'react';
 import DashboardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
 import UserContext from '../../contexts/UserContext'
+import { MagicSpinner } from 'react-spinners-kit'
 import './Dashboard.css'
 
 export default class Dashboard extends React.Component{
@@ -11,6 +12,7 @@ export default class Dashboard extends React.Component{
         wordList:null,
         language: null,
         totalScore: 0,
+        loading: true,
         error: null
     }
     componentWillMount(){
@@ -20,6 +22,7 @@ export default class Dashboard extends React.Component{
                 wordList:lang.words,
                 language: lang.language.name,
                 totalScore: lang.language.total_score,
+                loading: true,
                 current:0
             })
         })
@@ -36,8 +39,13 @@ export default class Dashboard extends React.Component{
             )
         }
         return (
-            <div>
-                Fetching WordList
+            <div className="loading-container">
+                <MagicSpinner
+                    size={50}
+                    color="darkslategrey"
+                    className="loading"
+                    loading={this.state.loading}
+                />
             </div>   
         )
     }
