@@ -1,0 +1,28 @@
+
+@media only screen and (min-width: 1200px){
+.DashCard{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    max-width: 400px;
+    width:25%;
+    display: inline-block;
+    margin-right: 3%;
+    margin-left: 3%;
+    height:500px;
+}
+h4{
+    font-size:3em;
+}
+}
+@media only screen and (max-width: 1199px){
+.DashCard{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width:60%;
+    height:200px;
+    margin-bottom: .5em;
+}
+h4{
+    font-size:2em;
+}
+}

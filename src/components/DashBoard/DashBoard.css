@@ -1,0 +1,8 @@
+@media only screen and (max-width: 1199px){
+.DashCard-Container{
+    width:100%;
+    flex-flow: column wrap;
+    display:flex;
+    align-items: center;
+}
+}
