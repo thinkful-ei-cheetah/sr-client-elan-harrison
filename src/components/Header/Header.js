@@ -11,6 +11,14 @@ class Header extends Component {
     this.context.processLogout()
   }
 
+  openNav = () => {
+    document.getElementById('nav').style.width = '250px'
+  }
+
+  closeNav = () => {
+    document.getElementById('nav').style.width = '0'
+  }
+
   renderLogoutLink() {
     return (
       <div>
@@ -30,10 +38,11 @@ class Header extends Component {
 
   renderLoginLink() {
     return (
-      <nav>
-        <Link to='/login'>Login</Link>
+      <nav id="nav">
+        <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
+        <Link to='/login' className='nav-link'>Login</Link>
         {' '}
-        <Link to='/register'>Sign up</Link>
+        <Link to='/register' className='nav-link'> Sign up</Link>
       </nav>
     )
   }
@@ -41,14 +50,15 @@ class Header extends Component {
   render() {
     return (
       <header>
+        <i className="fas fa-bars fa-2x" onClick={this.openNav}></i>
+        {TokenService.hasAuthToken()
+        ? this.renderLogoutLink()
+        : this.renderLoginLink()}
         <h1>
           <Link to='/'>
             Spaced repetition
           </Link>
         </h1>
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
       </header>
     );
   }
