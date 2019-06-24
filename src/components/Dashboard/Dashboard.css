@@ -36,9 +36,3 @@
   padding-right: 1em;
   padding-top: .3em;
 }
-
-.language {
-  display: flex;
-  justify-content: flex-start;
-  padding-left: 1em;
-}

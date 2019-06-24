@@ -15,16 +15,16 @@ h4{
 }
 }
 @media only screen and (max-width: 1199px){
-.DashCard{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width:60%;
-    height:200px;
-    margin-bottom: .5em;
-}
-h4{
-    font-size:2em;
-}
+    .DashCard{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width:60%;
+        height:200px;
+        margin-bottom: .5em;
+    }
+    h4{
+        font-size:2em;
+    }
 }
 
 .DashCard:last-child {

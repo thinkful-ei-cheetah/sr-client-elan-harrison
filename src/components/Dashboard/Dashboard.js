@@ -1,8 +1,8 @@
-import React from 'react';
+import React from './node_modules/react';
 import DashBoardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
 import UserContext from '../../contexts/UserContext'
-import './DashBoard.css'
+import './Dashboard.css'
 
 export default class DashBoard extends React.Component{
     static contextType = UserContext
@@ -16,7 +16,6 @@ export default class DashBoard extends React.Component{
     componentWillMount(){
         DashBoardService.fetchWords()
         .then(lang =>{
-            console.log(lang)
             this.setState({
                 wordList:lang.words,
                 language: lang.language.name,
@@ -61,7 +60,7 @@ export default class DashBoard extends React.Component{
         const { language, totalScore } = this.state
         return (
             <div className="DashCard-Container">
-                <span className="score">{`Total Score: ${totalScore}`}</span>
+                <h3 className="score">{`Total Score: ${totalScore}`}</h3>
                 <button className="stylish-btn" >{`Start Learning ${language}`}</button>
                 <div className="btn-container">
                     <button type="button" className="stylish-btn" onClick ={(ev)=>{

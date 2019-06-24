@@ -1,8 +1,9 @@
 import TokenService from './token-service';
+import config from '../config'
 
 const dashBoardService ={
     fetchWords(){
-        return fetch('http://localhost:8000/api/language', {
+        return fetch(`${config.API_ENDPOINT}/language`, {
             method: "GET",
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
