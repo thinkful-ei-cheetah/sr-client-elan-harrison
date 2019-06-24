@@ -25,7 +25,9 @@ class Header extends Component {
         <span>
           {this.context.user.name}
         </span>
-        <nav>
+        <i className="fas fa-bars fa-2x" onClick={this.openNav}></i>
+        <nav id="nav">
+        <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
           <Link
             onClick={this.handleLogoutClick}
             to='/login'>
@@ -38,19 +40,21 @@ class Header extends Component {
 
   renderLoginLink() {
     return (
-      <nav id="nav">
-        <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
-        <Link to='/login' className='nav-link' onClick={this.closeNav}>Login</Link>
-        {' '}
-        <Link to='/register' className='nav-link' onClick={this.closeNav}> Sign up</Link>
-      </nav>
+      <>
+        <i className="fas fa-bars fa-2x" onClick={this.openNav}></i>
+        <nav id="nav">
+          <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
+          <Link to='/login' className='nav-link' onClick={this.closeNav}>Login</Link>
+          {' '}
+          <Link to='/register' className='nav-link' onClick={this.closeNav}> Sign up</Link>
+        </nav>
+      </>
     )
   }
 
   render() {
     return (
       <header>
-        <i className="fas fa-bars fa-2x" onClick={this.openNav}></i>
         {TokenService.hasAuthToken()
         ? this.renderLogoutLink()
         : this.renderLoginLink()}
