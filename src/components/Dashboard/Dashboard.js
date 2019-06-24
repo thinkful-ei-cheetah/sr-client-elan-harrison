@@ -1,21 +1,30 @@
 import React from 'react';
 import DashBoardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
+import UserContext from '../../contexts/UserContext'
+import './DashBoard.css'
 
 export default class DashBoard extends React.Component{
+    static contextType = UserContext
     state={
         current:null,
-        wordList:null
+        wordList:null,
+        language: null,
+        totalScore: 0,
+        error: null
     }
     componentWillMount(){
         DashBoardService.fetchWords()
         .then(lang =>{
+            console.log(lang)
             this.setState({
                 wordList:lang.words,
+                language: lang.language.name,
+                totalScore: lang.language.total_score,
                 current:0
             })
         })
-        .then(() => console.log(this.state.wordList))
+        .catch(err => this.context.setError(err.error))
     }
     renderDisplay(){
         if(this.state.wordList!==null){
@@ -49,17 +58,22 @@ export default class DashBoard extends React.Component{
         }
     }
     render(){
+        const { language, totalScore } = this.state
         return (
-            <div>
+            <div className="DashCard-Container">
+                <span className="score">{`Total Score: ${totalScore}`}</span>
+                <button className="stylish-btn" >{`Start Learning ${language}`}</button>
+                <div className="btn-container">
+                    <button type="button" className="stylish-btn" onClick ={(ev)=>{
+                        ev.preventDefault();
+                        this.previousWord()
+                    }}>previous</button>
+                    <button type="button" className="stylish-btn" onClick ={(ev)=>{
+                        ev.preventDefault();
+                        this.nextWord()
+                    }}>next</button>
+                </div>
                 {this.renderDisplay()}
-                <button type="button" onClick ={(ev)=>{
-                    ev.preventDefault();
-                    this.previousWord()
-                }}>previous</button>
-                <button type="button" onClick ={(ev)=>{
-                    ev.preventDefault();
-                    this.nextWord()
-                }}>next</button>
             </div>
         )
     }

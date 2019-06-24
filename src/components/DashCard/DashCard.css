@@ -26,3 +26,8 @@ h4{
     font-size:2em;
 }
 }
+
+.DashCard:last-child {
+    margin-bottom: 3em;
+}
+

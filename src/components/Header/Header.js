@@ -22,18 +22,19 @@ class Header extends Component {
   renderLogoutLink() {
     return (
       <div>
-        <span>
-          {this.context.user.name}
-        </span>
-        <i className="fas fa-bars fa-2x" onClick={this.openNav}></i>
+        <i className="fas fa-bars fa-2x open" onClick={this.openNav}></i>
         <nav id="nav">
         <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
-          <Link
+          <Link 
+            className='nav-link'
             onClick={this.handleLogoutClick}
             to='/login'>
             Logout
           </Link>
         </nav>
+        <span className="current-user">
+          {`Hello, ${this.context.user.name}!`}
+        </span>
       </div>
     )
   }
@@ -41,7 +42,7 @@ class Header extends Component {
   renderLoginLink() {
     return (
       <>
-        <i className="fas fa-bars fa-2x" onClick={this.openNav}></i>
+        <i className="fas fa-bars fa-2x open" onClick={this.openNav}></i>
         <nav id="nav">
           <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
           <Link to='/login' className='nav-link' onClick={this.closeNav}>Login</Link>
@@ -55,14 +56,15 @@ class Header extends Component {
   render() {
     return (
       <header>
-        {TokenService.hasAuthToken()
-        ? this.renderLogoutLink()
-        : this.renderLoginLink()}
         <h1>
           <Link to='/'>
             Spaced repetition
           </Link>
         </h1>
+        {TokenService.hasAuthToken()
+        ? this.renderLogoutLink()
+        : this.renderLoginLink()}
+
       </header>
     );
   }

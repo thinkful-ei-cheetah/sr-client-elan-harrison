@@ -45,3 +45,15 @@ nav .closebtn {
 header > h1 {
   text-align: center;
 }
+
+.current-user {
+  padding-right: 1em;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 18px;
+}
+
+i.open {
+  position: absolute;
+  top: 0;
+}
