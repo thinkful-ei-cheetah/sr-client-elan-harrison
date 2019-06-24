@@ -1,6 +1,7 @@
 import React from 'react';
 import DashBoardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
+import './DashBoard.css'
 
 export default class DashBoard extends React.Component{
     state={
@@ -50,7 +51,7 @@ export default class DashBoard extends React.Component{
     }
     render(){
         return (
-            <div>
+            <div className="DashCard-Container">
                 {this.renderDisplay()}
                 <button type="button" onClick ={(ev)=>{
                     ev.preventDefault();

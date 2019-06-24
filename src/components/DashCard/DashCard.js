@@ -1,10 +1,11 @@
 import React from 'react';
+import './DashCard.css';
 
 export default function DashCard(props){
     return props.words.map(word =>{
         return (
             <div className="DashCard" key={word.original}>
-                <h2 className="Word">{word.original}</h2>
+                <h4 className="Word">{word.original}</h4>
                 <span>
                     Correct Count:{word.correct_count}
                 </span>
