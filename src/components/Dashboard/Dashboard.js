@@ -1,10 +1,10 @@
-import React from './node_modules/react';
-import DashBoardService from '../../services/dashboard-service';
+import React from 'react';
+import DashboardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
 import UserContext from '../../contexts/UserContext'
 import './Dashboard.css'
 
-export default class DashBoard extends React.Component{
+export default class Dashboard extends React.Component{
     static contextType = UserContext
     state={
         current:null,
@@ -14,7 +14,7 @@ export default class DashBoard extends React.Component{
         error: null
     }
     componentWillMount(){
-        DashBoardService.fetchWords()
+        DashboardService.fetchWords()
         .then(lang =>{
             this.setState({
                 wordList:lang.words,

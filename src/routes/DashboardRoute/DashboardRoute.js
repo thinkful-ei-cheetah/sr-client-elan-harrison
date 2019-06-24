@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import DashBoard from '../../components/DashBoard/DashBoard';
+import Dashboard from '../../components/DashBoard/Dashboard';
 
 class DashboardRoute extends Component {
   render() {
     return (
       <section>
-        <DashBoard/>
+        <Dashboard/>
       </section>
     );
   }

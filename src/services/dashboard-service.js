@@ -1,7 +1,7 @@
 import TokenService from './token-service';
 import config from '../config'
 
-const dashBoardService ={
+const dashboardService ={
     fetchWords(){
         return fetch(`${config.API_ENDPOINT}/language`, {
             method: "GET",
@@ -15,4 +15,4 @@ const dashBoardService ={
           )
     }
 }
-export default dashBoardService;
+export default dashboardService;
