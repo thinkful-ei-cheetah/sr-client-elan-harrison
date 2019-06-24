@@ -40,9 +40,9 @@ class Header extends Component {
     return (
       <nav id="nav">
         <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
-        <Link to='/login' className='nav-link'>Login</Link>
+        <Link to='/login' className='nav-link' onClick={this.closeNav}>Login</Link>
         {' '}
-        <Link to='/register' className='nav-link'> Sign up</Link>
+        <Link to='/register' className='nav-link' onClick={this.closeNav}> Sign up</Link>
       </nav>
     )
   }
