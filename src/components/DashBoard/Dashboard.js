@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import DashboardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
 import UserContext from '../../contexts/UserContext'
-import { MagicSpinner } from 'react-spinners-kit'
+import Loading from '../Loading/Loading'
 import './Dashboard.css'
 
 export default class Dashboard extends React.Component{
@@ -16,7 +16,7 @@ export default class Dashboard extends React.Component{
         loading: true,
         error: null
     }
-    componentWillMount(){
+    componentDidMount(){
         DashboardService.fetchWords()
         .then(lang =>{
             this.setState({
@@ -40,14 +40,7 @@ export default class Dashboard extends React.Component{
             )
         }
         return (
-            <div className="loading-container">
-                <MagicSpinner
-                    size={50}
-                    color="darkslategrey"
-                    className="loading"
-                    loading={this.state.loading}
-                />
-            </div>   
+            <Loading loading={this.state.loading} /> 
         )
     }
     nextWord(){
