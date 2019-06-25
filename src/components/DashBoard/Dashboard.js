@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import DashboardService from '../../services/dashboard-service';
 import DashCard from '../DashCard/DashCard';
 import UserContext from '../../contexts/UserContext'
@@ -69,7 +70,7 @@ export default class Dashboard extends React.Component{
         return (
             <div className="DashCard-Container">
                 <h3 className="score">{`Total Score: ${totalScore}`}</h3>
-                <button className="stylish-btn" >{`Start Learning ${language}`}</button>
+                <Link to={"/learn"}><button className="stylish-btn" >{`Start Learning ${language}`}</button></Link>
                 <div className="btn-container">
                     <button type="button" className="stylish-btn" onClick ={(ev)=>{
                         ev.preventDefault();

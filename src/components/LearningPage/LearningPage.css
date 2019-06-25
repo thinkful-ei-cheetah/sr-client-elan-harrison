@@ -13,9 +13,9 @@ div.Card-Container{
     font-size: 2.5em;
 }
 .Submit-Btn{
-    width:80px;
-    height:30px;
     font-size: 1em;
+    display: block;
+    margin: 0 auto;
     margin-top: 30px;
 }
 #User-Guess input{
