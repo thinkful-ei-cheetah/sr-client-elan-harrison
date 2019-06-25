@@ -80,7 +80,7 @@ class RegistrationForm extends Component {
           />
         </div>
         <footer className="footer-container">
-          <Button type='submit' className="signup-btn">
+          <Button type='submit' className="submit stylish-btn">
             Sign up
           </Button>
           {' '}

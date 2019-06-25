@@ -7,11 +7,13 @@ div.Card-Container{
 }
 #User-Guess{
     font-size:1.5em;
-    margin-top:80px;
+    margin-top:40px;
+    width: 80%;
 }
 .Word-Container h2{
     font-size: 2.5em;
 }
+
 .Submit-Btn{
     font-size: 1em;
     display: block;
@@ -23,7 +25,8 @@ div.Card-Container{
     border:1px solid black;
 }
 
-.results-container {
+.results-container, .Word-Container {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
