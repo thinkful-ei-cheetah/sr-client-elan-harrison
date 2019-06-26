@@ -11,10 +11,11 @@
   padding: 10px 12px;
   border: 2px solid #BFC0C0;
   color: #BFC0C0;
-  font-size: .8em;
+  font-size: 1em;
   letter-spacing: 1.5px;
   background-color: #2D3142;
   margin-bottom: 2em;
+  border-radius: 6px;
 }
 
 .btn-container {

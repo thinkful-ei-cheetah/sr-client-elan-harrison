@@ -8,12 +8,12 @@ export class AnswerCard extends Component {
     return (
       <BackSide>
         <div className="results-container">
-          {!results.answer && <Loading loading={loading} />}
             <h1 className="description">
                 {results.isCorrect
                 ? `Good job! You answered correctly.`
                 : `Sorry, you answered incorrectly.`}
             </h1>
+            {!results.answer && <Loading loading={loading} />}
             <h3>{`The correct translation to ${word} is ${results.answer}`}</h3>
             <div className="results-info">
                 <p>{`Correct count: ${results.wordCorrectCount}`}</p>

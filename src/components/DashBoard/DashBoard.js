@@ -16,7 +16,7 @@ export default class Dashboard extends React.Component{
         loading: true,
         error: null
     }
-    componentDidMount(){
+    componentWillMount(){
         DashboardService.fetchWords()
         .then(lang =>{
             this.setState({

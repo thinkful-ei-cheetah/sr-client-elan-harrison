@@ -8,8 +8,8 @@ export class GuessCard extends Component {
     return (
       <FrontSide>
         <div className="Word-Container">
-          {!results.answer && <Loading loading={loading}/>}
           <h2>{word}</h2>
+          {!results.answer && <Loading loading={loading}/>}
           <h3>{`Correct Guesses: ${correct}`}</h3>
           <form id="User-Guess" onSubmit={handleSubmitAnswer}>
               <label>
