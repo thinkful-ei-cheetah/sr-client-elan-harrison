@@ -10,12 +10,12 @@ class LearningPage extends React.Component{
         this.state={
             isFlipped:false,
             word:'',
-            answer:null,
             results: {},
-            loading: true
+            loading: true,
+            answering: true
         };
         this.userInput = React.createRef();
-        this.handleClick = this.handleClick.bind(this)
+        this.handleNextQuestion = this.handleNextQuestion.bind(this)
         this.handleSubmitAnswer = this.handleSubmitAnswer.bind(this)
     }
 
@@ -24,28 +24,40 @@ class LearningPage extends React.Component{
         this.setState({ word: word.nextWord, loading: false })
     }
     
-    handleClick(ev){
+    async handleNextQuestion(ev){
         ev.preventDefault();
-        
+        const newWord = await LearningPageService.fetchWordHead()
         this.setState({
-            isFlipped:!this.state.isFlipped
+            isFlipped:!this.state.isFlipped,
+            word: newWord.nextWord,
+            answering: true
         })
         
     }
 
     async handleSubmitAnswer(ev){
         ev.preventDefault()
-        const userAnswer = this.userInput.current.value
-        const results = await LearningPageService.submitAnswer({
-            userAnswer
-        })
-        this.setState({ answer: results.answer, results: results, isFlipped:!this.state.isFlipped, loading: false })
+        const { answering } = this.state
+        console.log(answering)
+        if (answering) {
+            const userAnswer = this.userInput.current.value
+            const results = await LearningPageService.submitAnswer({
+                userAnswer
+            })
+            this.setState({ 
+                results: results, 
+                isFlipped:!this.state.isFlipped, 
+                loading: false,
+                answering: false
+            })
+            this.userInput.current.value = ''
+        }
     }
     renderBack(){
-        const { answer, word, results } = this.state
-        if (this.state.answer===null){
+        const { word, results, loading } = this.state
+        if (results.answer===null){
             return (
-                <Loading loading={this.state.loading} />
+                <Loading loading={loading} />
             )
         }
         return (
@@ -56,13 +68,13 @@ class LearningPage extends React.Component{
                         ? `Good job! You answered correctly.`
                         : `Sorry, you answered incorrectly.`}
                     </h1>
-                    <h3>{`The correct translation to ${word} is ${answer}`}</h3>
+                    <h3>{`The correct translation to ${word} is ${results.answer}`}</h3>
                     <div className="results-info">
                         <p>{`Correct count: ${results.wordCorrectCount}`}</p>
                         <p>{`Incorrect count: ${results.wordIncorrectCount}`}</p>
                         <p>{`Total score: ${results.totalScore}`}</p>
                     </div>  
-                    <button type="button" className="next stylish-btn" onClick={this.handleClick}>
+                    <button type="button" className="next stylish-btn" onClick={this.handleNextQuestion}>
                     Move to the Next Question
                     </button>                  
                 </div>

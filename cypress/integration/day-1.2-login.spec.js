@@ -22,7 +22,7 @@ import * as helpers from '../support/helpers'
   - The application remembers that I'm logged in and doesn't redirect me to the registration page.
 */
 describe(`User story: Login`, function() {
-  it(`has navigation to login page in nav and form`, () => {
+  it.skip(`has navigation to login page in nav and form`, () => {
     cy.visit('/')
 
     cy.get('header nav').within($nav => {
