@@ -1,8 +1,9 @@
 import React from 'react';
 import './LearningPage.css';
-import Flippy, { FrontSide, BackSide } from 'react-flippy';
+import Flippy from 'react-flippy';
 import LearningPageService from '../../services/learningpage-service'
-import Loading from '../Loading/Loading'
+import GuessCard from '../GuessCard/GuessCard'
+import AnswerCard from '../AnswerCard/AnswerCard'
 
 class LearningPage extends React.Component{
     constructor(){
@@ -12,7 +13,8 @@ class LearningPage extends React.Component{
             word:'',
             results: {},
             loading: true,
-            answering: true
+            answering: true,
+            correct: 0
         };
         this.userInput = React.createRef();
         this.handleNextQuestion = this.handleNextQuestion.bind(this)
@@ -21,10 +23,10 @@ class LearningPage extends React.Component{
 
     async componentDidMount() {
         const word = await LearningPageService.fetchWordHead()
-        this.setState({ word: word.nextWord, loading: false })
+        this.setState({ word: word.nextWord, loading: false, correct: word.wordCorrectCount })
     }
     
-    async handleNextQuestion(ev){
+    handleNextQuestion = async (ev) => {
         ev.preventDefault();
         const newWord = await LearningPageService.fetchWordHead()
         this.setState({
@@ -35,10 +37,9 @@ class LearningPage extends React.Component{
         
     }
 
-    async handleSubmitAnswer(ev){
+    handleSubmitAnswer = async(ev) => {
         ev.preventDefault()
         const { answering } = this.state
-        console.log(answering)
         if (answering) {
             const userAnswer = this.userInput.current.value
             const results = await LearningPageService.submitAnswer({
@@ -53,57 +54,9 @@ class LearningPage extends React.Component{
             this.userInput.current.value = ''
         }
     }
-    renderBack(){
-        const { word, results, loading } = this.state
-        if (results.answer===null){
-            return (
-                <Loading loading={loading} />
-            )
-        }
-        return (
-            <>
-                <div className="results-container">
-                    <h1 className="description">
-                        {results.isCorrect
-                        ? `Good job! You answered correctly.`
-                        : `Sorry, you answered incorrectly.`}
-                    </h1>
-                    <h3>{`The correct translation to ${word} is ${results.answer}`}</h3>
-                    <div className="results-info">
-                        <p>{`Correct count: ${results.wordCorrectCount}`}</p>
-                        <p>{`Incorrect count: ${results.wordIncorrectCount}`}</p>
-                        <p>{`Total score: ${results.totalScore}`}</p>
-                    </div>  
-                    <button type="button" className="next stylish-btn" onClick={this.handleNextQuestion}>
-                    Move to the Next Question
-                    </button>                  
-                </div>
-            </>
-        )
-    }
-    renderFront(){
-        if(this.state.word===''){
-            return(
-                <Loading loading={this.state.loading} />
-            )
-        }
-        return(
-            <div className="Word-Container">
-                <h2>{this.state.word}</h2>
-                <form id="User-Guess" onSubmit={(ev)=>{
-                    this.handleSubmitAnswer(ev)
-                    }}>
-                    <label>
-                        Your Guess:{' '}
-                        <input type="text" ref={this.userInput}/>
-                    </label>
-                    <button type="submit" className="Submit-Btn stylish-btn">Submit</button>
-                </form>
-            </div>
-        )
-    }
 
     render(){
+        const { word, correct, loading, results } = this.state
         return (
             <div className="Card-Container">
                 <Flippy
@@ -112,12 +65,20 @@ class LearningPage extends React.Component{
                 isFlipped={this.state.isFlipped}
                 style={{width: '800px', height: '100%'}}
                 >
-                    <FrontSide>
-                        {this.renderFront()}
-                    </FrontSide>
-                    <BackSide>
-                        {this.renderBack()}
-                    </BackSide>
+                    <GuessCard
+                        word={word}
+                        correct={correct}
+                        loading={loading}
+                        results={results}
+                        inputValue={this.userInput}
+                        handleSubmitAnswer={this.handleSubmitAnswer}
+                    />
+                    <AnswerCard
+                        word={word}
+                        loading={loading}
+                        results={results}
+                        handleNextQuestion={this.handleNextQuestion}
+                    />
                 </Flippy>
            </div>
         )

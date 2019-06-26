@@ -1,0 +1,32 @@
+import React, { Component } from 'react'
+import Loading from '../Loading/Loading';
+import { BackSide } from 'react-flippy';
+
+export class AnswerCard extends Component {
+  render() {
+    const { word, results, loading, handleNextQuestion } = this.props
+    return (
+      <BackSide>
+        <div className="results-container">
+          {!results.answer && <Loading loading={loading} />}
+            <h1 className="description">
+                {results.isCorrect
+                ? `Good job! You answered correctly.`
+                : `Sorry, you answered incorrectly.`}
+            </h1>
+            <h3>{`The correct translation to ${word} is ${results.answer}`}</h3>
+            <div className="results-info">
+                <p>{`Correct count: ${results.wordCorrectCount}`}</p>
+                <p>{`Incorrect count: ${results.wordIncorrectCount}`}</p>
+                <p>{`Total score: ${results.totalScore}`}</p>
+            </div>  
+            <button type="button" className="next stylish-btn" onClick={handleNextQuestion}>
+            Move to the Next Question
+            </button>                  
+        </div>
+      </BackSide>
+    )
+  }
+}
+
+export default AnswerCard

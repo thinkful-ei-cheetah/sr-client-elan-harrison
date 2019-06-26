@@ -33,8 +33,15 @@
 .score {
   position: absolute;
   right: 0;
-  padding-right: 1.95em;
+  padding-right: 1.6em;
   padding-top: .3em;
+}
+
+.language_name {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  padding-right: 1.6em;
 }
 
 .loading-container {
