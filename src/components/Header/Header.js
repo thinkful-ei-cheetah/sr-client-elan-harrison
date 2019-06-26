@@ -12,7 +12,7 @@ class Header extends Component {
   }
 
   openNav = () => {
-    document.getElementById('nav').style.width = '250px'
+    document.getElementById('nav').style.width = '200px'
   }
 
   closeNav = () => {
