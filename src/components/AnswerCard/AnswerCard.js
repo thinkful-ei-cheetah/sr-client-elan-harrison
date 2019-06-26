@@ -15,7 +15,7 @@ export class AnswerCard extends Component {
                 : `Sorry, you answered incorrectly.`}
             </h1>
             {!results.answer && <Loading loading={loading} />}
-            <h3>{`The correct translation to ${word} is ${results.answer}`}</h3>
+            <h3>{`The correct translation of ${word} is ${results.answer}`}</h3>
             <div className="results-info">
                 <p>{`Total score: ${results.totalScore}`}</p>
             </div>  

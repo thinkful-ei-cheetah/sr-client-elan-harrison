@@ -23,6 +23,7 @@ h4{
         height:200px;
         margin-bottom: .5em;
         background:rgba(255,255,255,0.5);
+        min-width: 250px;
     }
     h4{
         font-size:2em;

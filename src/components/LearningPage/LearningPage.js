@@ -26,15 +26,14 @@ class LearningPage extends React.Component{
         this.setState({ word: word.nextWord, loading: false, correct: word.wordCorrectCount, incorrect: word.wordIncorrectCount })
     }
     
-    handleNextQuestion = async (ev) => {
+    handleNextQuestion = (ev) => {
         ev.preventDefault();
-        const newWord = await LearningPageService.fetchWordHead()
-        this.setState({ loading: true }, this.setState({
+        this.setState({
             isFlipped:!this.state.isFlipped,
-            word: newWord.nextWord,
+            word: this.state.newWord,
             answering: true,
-            loading: false,
-        }))
+            loading: false
+        })
     }
 
     handleSubmitAnswer = async(ev) => {
@@ -51,7 +50,8 @@ class LearningPage extends React.Component{
                 loading: false,
                 answering: false,
                 correct: results.wordCorrectCount,
-                incorrect: results.wordIncorrectCount
+                incorrect: results.wordIncorrectCount,
+                newWord: results.nextWord
             })
             this.userInput.current.value = ''
         }

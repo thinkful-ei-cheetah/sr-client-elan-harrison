@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import LoginForm from '../../components/LoginForm/LoginForm'
 import './LoginRoute.css'
 
@@ -23,6 +24,7 @@ class LoginRoute extends Component {
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
         />
+        <Link to='/login'>Already have an account?</Link>
       </section>
     );
   }
