@@ -1,4 +1,4 @@
-.login-form, .reg-form, .not-found-page {
+.login-form, .registration-page, .not-found-page {
   display: flex;
   flex-flow: column wrap;
   height: 85vh;
