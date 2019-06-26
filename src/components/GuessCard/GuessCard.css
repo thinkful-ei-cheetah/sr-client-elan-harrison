@@ -2,10 +2,26 @@
   font-size: 2.5em;
 }
 
+@media screen and (max-width: 630px) {
+  #User-Guess > label {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  #User-Guess > label > input {
+    margin-top : .5em;
+    width: 85%;
+    padding: 8px 10px;
+  }
+
+  .Word-Container h2 {
+    font-size: 2em;
+  }
+}
+
 #User-Guess{
-  font-size:1.5em;
   margin-top: 1em;
-  width: 80%;
+  width: 100%;
 }
 
 .Submit-Btn{

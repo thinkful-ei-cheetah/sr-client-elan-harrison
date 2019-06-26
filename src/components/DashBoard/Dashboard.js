@@ -62,8 +62,8 @@ export default class Dashboard extends React.Component{
         const { language, totalScore } = this.state
         return (
             <div className="DashCard-Container">
-                <h2 className="score">{`Total Score: ${totalScore}`}</h2>
                 <h2 className="language_name">{language}</h2>
+                <h2 className="score">{`Total Score: ${totalScore}`}</h2>
                 <Link to={"/learn"}><button className="stylish-btn" >{`Start Learning`}</button></Link>
                 <div className="btn-container">
                     <button type="button" className="stylish-btn" onClick ={(ev)=>{

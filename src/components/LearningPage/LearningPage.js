@@ -65,7 +65,7 @@ class LearningPage extends React.Component{
                 flipDirection="horizontal"
                 flipOnClick={false}
                 isFlipped={this.state.isFlipped}
-                style={{width: '800px', height: '100%', background: 'rgba(255,255,255,0.5)'}}
+                className="flippy-card-container"
                 >
                     <GuessCard
                         word={word}
