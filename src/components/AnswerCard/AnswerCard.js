@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Loading from '../Loading/Loading';
-import { BackSide } from 'react-flippy';
+import Loading from '../Loading/Loading'
+import { BackSide } from 'react-flippy'
+import './AnswerCard.css'
 
 export class AnswerCard extends Component {
   render() {
@@ -16,8 +17,6 @@ export class AnswerCard extends Component {
             {!results.answer && <Loading loading={loading} />}
             <h3>{`The correct translation to ${word} is ${results.answer}`}</h3>
             <div className="results-info">
-                <p>{`Correct count: ${results.wordCorrectCount}`}</p>
-                <p>{`Incorrect count: ${results.wordIncorrectCount}`}</p>
                 <p>{`Total score: ${results.totalScore}`}</p>
             </div>  
             <button type="button" className="next stylish-btn" onClick={handleNextQuestion}>

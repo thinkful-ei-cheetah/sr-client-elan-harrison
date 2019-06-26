@@ -14,7 +14,7 @@ class LearningPage extends React.Component{
             results: {},
             loading: true,
             answering: true,
-            correct: 0
+            correct: 0,
         };
         this.userInput = React.createRef();
         this.handleNextQuestion = this.handleNextQuestion.bind(this)
@@ -23,53 +23,55 @@ class LearningPage extends React.Component{
 
     async componentDidMount() {
         const word = await LearningPageService.fetchWordHead()
-        this.setState({ word: word.nextWord, loading: false, correct: word.wordCorrectCount })
+        this.setState({ word: word.nextWord, loading: false, correct: word.wordCorrectCount, incorrect: word.wordIncorrectCount })
     }
     
     handleNextQuestion = async (ev) => {
         ev.preventDefault();
         const newWord = await LearningPageService.fetchWordHead()
-        this.setState({
+        this.setState({ loading: true }, this.setState({
             isFlipped:!this.state.isFlipped,
             word: newWord.nextWord,
-            answering: true
-        })
-        
+            answering: true,
+            loading: false,
+        }))
     }
 
     handleSubmitAnswer = async(ev) => {
         ev.preventDefault()
         const { answering } = this.state
         if (answering) {
-            const userAnswer = this.userInput.current.value
+            const guess = this.userInput.current.value
             const results = await LearningPageService.submitAnswer({
-                userAnswer
+                guess
             })
             this.setState({ 
                 results: results, 
                 isFlipped:!this.state.isFlipped, 
                 loading: false,
-                answering: false
+                answering: false,
+                correct: results.wordCorrectCount,
+                incorrect: results.wordIncorrectCount
             })
             this.userInput.current.value = ''
         }
     }
 
     render(){
-        const { word, correct, loading, results } = this.state
+        const { word, correct, incorrect, loading, results } = this.state
         return (
             <div className="Card-Container">
                 <Flippy
                 flipDirection="horizontal"
                 flipOnClick={false}
                 isFlipped={this.state.isFlipped}
-                style={{width: '800px', height: '100%'}}
+                style={{width: '800px', height: '100%', background: 'rgba(255,255,255,0.5)'}}
                 >
                     <GuessCard
                         word={word}
                         correct={correct}
+                        incorrect={incorrect}
                         loading={loading}
-                        results={results}
                         inputValue={this.userInput}
                         handleSubmitAnswer={this.handleSubmitAnswer}
                     />

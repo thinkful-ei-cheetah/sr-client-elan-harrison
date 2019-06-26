@@ -5,43 +5,5 @@ div.Card-Container{
     min-height:450px;
     margin-top:50px;
 }
-#User-Guess{
-    font-size:1.5em;
-    margin-top:40px;
-    width: 80%;
-}
-.Word-Container h2{
-    font-size: 2.5em;
-}
 
-.Submit-Btn{
-    font-size: 1em;
-    display: block;
-    margin: 0 auto;
-    margin-top: 75px;
-}
-#User-Guess input{
-    background-color:white;
-    border:1px solid black;
-}
 
-.results-container, .Word-Container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column nowrap;
-}
-
-.next.stylish-btn {
-    margin-top: 30px;
-    font-size: 1em;
-}
-
-.Word-Container > .loading-container, .results-container > .loading-container {
-    margin: 0;
-}
-
-.Word-Container > h2 {
-    margin-bottom: 1em;
-}
