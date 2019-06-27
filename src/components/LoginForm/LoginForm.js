@@ -56,13 +56,8 @@ class LoginForm extends Component {
         className='LoginForm'
         onSubmit={this.handleSubmit}
       >
-<<<<<<< HEAD
-        <div role='alert'>
-          {error && <p id="error">{error}</p>}
-=======
         <div role='alert' className="Error">
           {error && <p>{error}</p>}
->>>>>>> 82a58cd2fc4f68fc4168998a0282abac3f09c8a7
         </div>
         <div className='username-container'>
           <Label htmlFor='login-username-input'>
@@ -89,7 +84,7 @@ class LoginForm extends Component {
         <Button type='submit' className="submit stylish-btn">
           Login
         </Button>
-        <Link className="already-signed-up"to='/register'>Need to sign up?</Link>
+        <Link className="already-signed-up" to='/register'>Sign up</Link>
       </form>
     )
   }
