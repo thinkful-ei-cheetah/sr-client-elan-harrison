@@ -25,7 +25,7 @@ describe(`User story: User's dashboard`, function() {
   })
 
   beforeEach(() => {
-    cy.login().visit('/')
+    cy.login().visit('/login')
   })
 
   it('has h2 with title, total score, subtitle and link', () => {

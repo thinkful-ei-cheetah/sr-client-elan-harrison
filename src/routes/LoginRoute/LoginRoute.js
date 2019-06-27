@@ -24,7 +24,6 @@ class LoginRoute extends Component {
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
         />
-        <Link to='/register'>Sign up</Link>
       </section>
     );
   }

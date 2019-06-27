@@ -27,6 +27,11 @@ class Header extends Component {
         <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
           <Link 
             className='nav-link'
+            to='/'>
+            Home
+          </Link>
+          <Link 
+            className='nav-link'
             onClick={this.handleLogoutClick}
             to='/login'>
             Logout
@@ -45,6 +50,7 @@ class Header extends Component {
         <i className="fas fa-bars fa-2x open" onClick={this.openNav}></i>
         <nav id="nav">
           <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
+          <Link to='/' className='nav-link'>Home</Link>
           <Link to='/login' className='nav-link' onClick={this.closeNav}>Login</Link>
           {' '}
           <Link to='/register' className='nav-link' onClick={this.closeNav}> Sign up</Link>
