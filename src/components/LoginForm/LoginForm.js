@@ -41,6 +41,13 @@ class LoginForm extends Component {
     this.firstInput.current.focus()
   }
 
+  handleError = (ev) => {
+    ev.preventDefault();
+    this.setState({
+      error:null
+    })
+  }
+
   render() {
     const { error } = this.state
     return (
@@ -48,7 +55,7 @@ class LoginForm extends Component {
         className='LoginForm'
         onSubmit={this.handleSubmit}
       >
-        <div role='alert'>
+        <div role='alert' className="Error">
           {error && <p>{error}</p>}
         </div>
         <div className='username-container'>
