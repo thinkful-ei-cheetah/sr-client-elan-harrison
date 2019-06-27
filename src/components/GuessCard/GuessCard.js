@@ -16,7 +16,7 @@ export class GuessCard extends Component {
           <form id="User-Guess" onSubmit={handleSubmitAnswer}>
               <label>
                   Your Guess:{' '}
-                  <input type="text" ref={inputValue} required/>
+                  <input type="text" ref={inputValue}/>
               </label>
               <button type="submit" className="Submit-Btn stylish-btn">Submit</button>
           </form>
