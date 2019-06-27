@@ -43,7 +43,10 @@ describe(`User story: Login`, function() {
     cy.visit('/login')
       .get('a[href="/register"]')
       .should('be.visible')
+<<<<<<< HEAD
       .and('have.text', ' Sign upSign up')
+=======
+>>>>>>> test
   })
 
   it('displays the login page', () => {
