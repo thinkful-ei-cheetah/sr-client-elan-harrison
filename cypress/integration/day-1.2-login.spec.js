@@ -27,11 +27,13 @@ describe(`User story: Login`, function() {
 
     cy.get('header nav').within($nav => {
       cy.get('a[href="/login"]')
+        .should('be.visible')
         .and('have.text', 'Login')
     })
 
     cy.get('main section').within($nav => {
       cy.get('a[href="/login"]')
+        .should('be.visible')
         .and('have.text', 'Already have an account?')
         .click()
         .url()
@@ -43,17 +45,14 @@ describe(`User story: Login`, function() {
     cy.visit('/login')
       .get('a[href="/register"]')
       .should('be.visible')
-<<<<<<< HEAD
       .and('have.text', ' Sign upSign up')
-=======
->>>>>>> test
   })
 
   it('displays the login page', () => {
     cy.visit('/login')
 
     cy.get('main section').within($section => {
-      cy.get('h1').should(
+      cy.get('h2').should(
         'have.text',
         'Login',
       )
@@ -112,7 +111,7 @@ describe(`User story: Login`, function() {
           .submit()
 
         cy.wait('@loginRequest')
-          .get('#error')
+          .get('[role=alert]')
           .should('have.text', 'Incorrect username or password')
 
         cy.url()
@@ -161,10 +160,10 @@ describe(`User story: Login`, function() {
         .as('languageRequest')
     })
 
-    it.only(`stores token in localStorage and redirects to /`, () => {
+    it(`stores token in localStorage and redirects to /`, () => {
       const loginUser = {
-        username: 'admin',
-        password: 'pass',
+        username: 'username',
+        password: 'password',
       }
       cy.visit('/login')
 
@@ -184,7 +183,7 @@ describe(`User story: Login`, function() {
             )
             expect(tokenInStorage).to.eql(loginToken)
           })
-        
+
         cy.url()
           .should('eq', `${Cypress.config().baseUrl}/`)
       })
@@ -218,8 +217,8 @@ describe(`User story: Login`, function() {
 
     it(`keeps refreshing the token before it expires`, () => {
       const loginUser = {
-        username: 'admin',
-        password: 'pass',
+        username: 'username',
+        password: 'password',
       }
       cy.clock().visit('/login')
 

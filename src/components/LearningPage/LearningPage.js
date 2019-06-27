@@ -7,27 +7,32 @@ import AnswerCard from '../AnswerCard/AnswerCard'
 
 class LearningPage extends React.Component{
     constructor(){
-        super();
-        this.state={
+        super()
+        this.state = {
             isFlipped:false,
             word:'',
             results: {},
             loading: true,
             answering: true,
             correct: 0,
-        };
-        this.userInput = React.createRef();
+        }
+        this.userInput = React.createRef()
         this.handleNextQuestion = this.handleNextQuestion.bind(this)
         this.handleSubmitAnswer = this.handleSubmitAnswer.bind(this)
     }
 
     async componentDidMount() {
         const word = await LearningPageService.fetchWordHead()
-        this.setState({ word: word.nextWord, loading: false, correct: word.wordCorrectCount, incorrect: word.wordIncorrectCount })
+        this.setState({ 
+            word: word.nextWord, 
+            loading: false, 
+            correct: word.wordCorrectCount, 
+            incorrect: word.wordIncorrectCount 
+        })
     }
     
     handleNextQuestion = (ev) => {
-        ev.preventDefault();
+        ev.preventDefault()
         this.setState({
             isFlipped:!this.state.isFlipped,
             word: this.state.newWord,

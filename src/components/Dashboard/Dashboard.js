@@ -8,7 +8,7 @@ import './Dashboard.css'
 
 export default class Dashboard extends React.Component{
     static contextType = UserContext
-    state={
+    state = {
         current:null,
         wordList:null,
         language: null,
@@ -16,9 +16,9 @@ export default class Dashboard extends React.Component{
         loading: true,
         error: null
     }
-    componentWillMount(){
+    componentWillMount() {
         DashboardService.fetchWords()
-        .then(lang =>{
+        .then(lang => {
             this.setState({
                 wordList:lang.words,
                 language: lang.language.name,
@@ -30,31 +30,31 @@ export default class Dashboard extends React.Component{
         .catch(err => this.context.setError(err.error))
     }
     renderDisplay(){
-        if(this.state.wordList!==null){
-            let words=[];
-            for (let i=0; i<3;i++){
+        if(this.state.wordList !== null) {
+            let words = [];
+            for (let i = 0; i < 3; i++) {
                 words.push(this.state.wordList[this.state.current+i])
             }
             return (
-                <DashCard words={words}/>
+                <DashCard words={words} />
             )
         }
         return (
             <Loading loading={this.state.loading} /> 
         )
     }
-    nextWord(){
-        if (this.state.wordList[this.state.current+3]){
+    nextWord() {
+        if (this.state.wordList[this.state.current+3]) {
             this.setState({
-                current:this.state.current+1
+                current:this.state.current + 1
             })
         }
     }
 
     previousWord(){
-        if (this.state.wordList[this.state.current-1]){
+        if (this.state.wordList[this.state.current - 1]) {
             this.setState({
-                current: this.state.current-1
+                current: this.state.current - 1
             })
         }
     }
@@ -66,12 +66,12 @@ export default class Dashboard extends React.Component{
                 <h2 className="score">{`Total correct answers: ${totalScore}`}</h2>
                 <Link to={"/learn"}><button className="stylish-btn" >{`Start practicing`}</button></Link>
                 <div className="btn-container">
-                    <button type="button" className="stylish-btn" onClick ={(ev)=>{
-                        ev.preventDefault();
+                    <button type="button" className="stylish-btn" onClick ={(ev) => {
+                        ev.preventDefault()
                         this.previousWord()
                     }}>previous</button>
-                    <button type="button" className="stylish-btn" onClick ={(ev)=>{
-                        ev.preventDefault();
+                    <button type="button" className="stylish-btn" onClick ={(ev) => {
+                        ev.preventDefault()
                         this.nextWord()
                     }}>next</button>
                 </div>
