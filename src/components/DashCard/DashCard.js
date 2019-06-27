@@ -7,11 +7,11 @@ export default function DashCard(props){
             <div className="DashCard" key={word.original}>
                 <h4 className="Word">{word.original}</h4>
                 <span>
-                    Correct Count: {word.correct_count}
+                    correct answer count: {word.correct_count}
                 </span>
                 <br/>
                 <span>
-                    Incorrect Count: {word.incorrect_count}
+                    incorrect answer count: {word.incorrect_count}
                 </span>
             </div>
         )
