@@ -45,7 +45,7 @@ describe(`User story: Login`, function() {
     cy.visit('/login')
       .get('a[href="/register"]')
       .should('be.visible')
-      .and('have.text', 'Sign up')
+      .and('have.text', ' Sign upSign up')
   })
 
   it('displays the login page', () => {
@@ -135,6 +135,7 @@ describe(`User story: Login`, function() {
           },
         })
         .as('loginRequest')
+        
 
       cy.route({
           method: 'PUT',
@@ -152,10 +153,9 @@ describe(`User story: Login`, function() {
           url: '/api/language',
           // minimal happy response from language endpoint
           status: 200,
-          response: {
-            language: {},
-            words: [],
-          },
+          response: 
+            'fixture:language'
+          ,
         })
         .as('languageRequest')
     })
@@ -198,7 +198,8 @@ describe(`User story: Login`, function() {
           .should('have.length', 1)
           .and('have.text', 'Logout')
           .and('have.attr', 'href', '/login')
-
+        cy.get('i[class="fas fa-bars fa-2x open"]')
+          .click()
         cy.get('nav a')
           .click()
           .url()

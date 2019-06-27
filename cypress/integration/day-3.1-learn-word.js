@@ -23,24 +23,17 @@ describe(`User story: Presented with word`, function() {
       .as('languageHeadRequest')
   })
 
-  it('displays the current score and h2 with next word', () => {
+  it('displays the current score', () => {
     cy.login()
       .visit(`/learn`)
       .wait('@languageHeadRequest')
-
+    
     cy.fixture('language-head.json')
       .then(languageHeadFixture => {
         cy.get('main').within($main => {
-          cy.get('h2')
-            .should('have.text', 'Your Guess:')
-            .siblings('span')
-            .should('have.text', languageHeadFixture.nextWord)
+          cy.get('label')
+            .should('have.text', 'Your Guess: ')
         })
-        cy.get('p').eq(0)
-          .should(
-            'have.text',
-            `Your total score is: ${languageHeadFixture.totalScore}`,
-          )
       })
   })
 
@@ -48,35 +41,37 @@ describe(`User story: Presented with word`, function() {
     cy.login()
       .visit(`/learn`)
       .wait('@languageHeadRequest')
+    cy.get('form[id="User-Guess"]')
+      .should('have.text', `Your Guess: Submit`)
+    cy.get('form[id="User-Guess"]').within($form => {
+      
 
-    cy.get('main form').within($form => {
-      cy.get('label[for=learn-guess-input]')
-        .should('have.text', `What's the translation for this word?`)
-
-      cy.get('input#learn-guess-input')
+      cy.get('input')
         .should('have.attr', 'type', 'text')
         .and('have.attr', 'required', 'required')
 
       cy.get('button[type=submit]')
-        .should('have.text', 'Submit your answer')
+        .should('have.text', 'Submit')
     })
   })
 
   it(`displays the correct and incorrect count for this word`, () => {
+    
     cy.login()
       .visit(`/learn`)
       .wait('@languageHeadRequest')
-
+    
     cy.fixture('language-head.json').then(languageHeadFixture => {
-      cy.get('main').within($main => {
-        cy.root()
+      cy.get('div[class="Word-Container"]').within($div => {
+        cy.get('p[class="Correct-Count"]')
           .should(
             'contain',
-            `You have answered this word correctly ${languageHeadFixture.wordCorrectCount} times.`,
+            `Correct guesses: ${languageHeadFixture.wordCorrectCount}`,
           )
-          .and(
+        cy.get('p[class="Incorrect-Count"]')
+          .should(
             'contain',
-            `You have answered this word incorrectly ${languageHeadFixture.wordIncorrectCount} times.`,
+            `Incorrect guesses: ${languageHeadFixture.wordIncorrectCount}`,
           )
       })
     })
