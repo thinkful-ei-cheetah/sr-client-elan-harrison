@@ -11,12 +11,12 @@ export class GuessCard extends Component {
         <div className="Word-Container">
           <h2>{word}</h2>
           {!word && <Loading loading={loading}/>}
-          <p>{`Correct guesses: ${correct}`}</p>
-          <p>{`Incorrect guesses: ${incorrect}`}</p>
+          <p className="Correct-Count">{`Correct guesses: ${correct}`}</p>
+          <p className="Incorrect-Count">{`Incorrect guesses: ${incorrect}`}</p>
           <form id="User-Guess" onSubmit={handleSubmitAnswer}>
               <label>
                   Your Guess:{' '}
-                  <input type="text" ref={inputValue}/>
+                  <input type="text" ref={inputValue} required/>
               </label>
               <button type="submit" className="Submit-Btn stylish-btn">Submit</button>
           </form>

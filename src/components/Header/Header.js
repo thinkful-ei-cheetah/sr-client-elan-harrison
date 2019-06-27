@@ -18,7 +18,7 @@ class Header extends Component {
   closeNav = () => {
     document.getElementById('nav').style.width = '0'
   }
-
+  
   renderLogoutLink() {
     return (
       <div>
