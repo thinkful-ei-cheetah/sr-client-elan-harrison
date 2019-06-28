@@ -1,7 +1,9 @@
 # Spaced Repetition Capstone
 
 Live Demo: https://eg-hc-spaced-repetition.netlify.com/
+
 Link to Server: https://github.com/thinkful-ei-cheetah/sr-server-elan-harrison
+
 Presentation Slides:
 
 
