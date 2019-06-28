@@ -1,5 +1,19 @@
 # Spaced Repetition Capstone
 
+Live Demo: https://eg-hc-spaced-repetition.netlify.com/
+Link to Server: https://github.com/thinkful-ei-cheetah/sr-server-elan-harrison
+Presentation Slides:
+
+
+
+## Space Repetition Learning tool
+
+This App uses space repetition method to teach the user a new language. Currently the database is only seeded with Italian words, but can implement with other language by populate it to the database.
+
+## What is Space Repetition?
+
+Spaced repetition is an evidence-based learning technique that incorporates increasing intervals of time between subsequent review of previously learned material in order to exploit the psychological spacing effect. -- From Wikipedia
+
 ## Setup
 
 To setup the application
@@ -45,3 +59,7 @@ npm run cypress:run
 ```
 
 This will save video recordings of the test runs in the directory `./cypress/videos/`.
+
+
+
+
