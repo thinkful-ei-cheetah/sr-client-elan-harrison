@@ -7,17 +7,14 @@ import * as helpers from '../support/helpers'
  * @criteria
   On any visit when I'm not logged in:
   - I can navigate to the "login" page.
-
   As a registered user on the login page:
   - I can navigate back to the register page.
   - I can enter my username and password.
   - If my submitted username and password are incorrect: I'm given an appropriate error message so that I can attempt to login again.
   - If my submitted username and password are correct: the app "logs me in" and redirects me to my dashboard.
-
   As a logged in user:
   - The app displays my name and presents a logout button.
   - The application refreshes my auth token so that I can remain logged in when active on the page.
-
   As a logged in user who is starting a new session:
   - The application remembers that I'm logged in and doesn't redirect me to the registration page.
 */
@@ -122,7 +119,6 @@ describe(`User story: Login`, function() {
 
   context(`Given valid credentials`, () => {
     const loginToken = helpers.makeLoginToken()
-
     beforeEach(() => {
       cy.server()
         .route({
@@ -162,8 +158,8 @@ describe(`User story: Login`, function() {
 
     it(`stores token in localStorage and redirects to /`, () => {
       const loginUser = {
-        username: 'username',
-        password: 'password',
+        username: 'admin',
+        password: 'pass',
       }
       cy.visit('/login')
 
@@ -195,12 +191,12 @@ describe(`User story: Login`, function() {
       cy.get('header').within($header => {
         cy.contains('Test name of user').should('exist')
         cy.get('nav a')
-          .should('have.length', 1)
-          .and('have.text', 'Logout')
-          .and('have.attr', 'href', '/login')
+          .should('have.length', 2)
+          .and('have.text', 'HomeLogout')
+          .and('have.attr', 'href', '/')
         cy.get('i[class="fas fa-bars fa-2x open"]')
           .click()
-        cy.get('nav a')
+        cy.get('#logout')
           .click()
           .url()
           .should('eq', `${Cypress.config().baseUrl}/login`)

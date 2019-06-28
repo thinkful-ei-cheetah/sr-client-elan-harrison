@@ -1,7 +1,7 @@
 import * as helpers from './helpers'
 
 Cypress.Commands.add('login', (options = {}) => {
-  cy.visit('/not-found-page-to-login')
+  cy.visit('/login')
     .window()
     .then(win => {
       win.localStorage.setItem(

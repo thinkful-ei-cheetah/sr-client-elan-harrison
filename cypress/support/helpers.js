@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 
 export function makeLoginToken() {
   const loginUser = {
-    username: 'admin',
-    password: 'pass',
+    user_id: 123,
+    name: 'Test name of user',
   }
   return jwt.sign(loginUser, 'test-secret', {
     subject: 'test-username',

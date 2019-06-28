@@ -26,11 +26,13 @@ class Header extends Component {
         <nav id="nav">
         <i className="fas fa-bars fa-2x closebtn" onClick={this.closeNav}></i>
           <Link 
+            id='home'
             className='nav-link'
             to='/'>
             Home
           </Link>
           <Link 
+            id='logout'
             className='nav-link'
             onClick={this.handleLogoutClick}
             to='/login'>

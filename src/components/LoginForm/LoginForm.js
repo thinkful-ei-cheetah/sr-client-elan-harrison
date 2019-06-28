@@ -54,6 +54,7 @@ class LoginForm extends Component {
     return (
       <form
         className='LoginForm'
+        id='login-form'
         onSubmit={this.handleSubmit}
       >
         <div role='alert' className="Error">
@@ -81,7 +82,7 @@ class LoginForm extends Component {
             required
           />
         </div>
-        <Button type='submit' className="submit stylish-btn">
+        <Button type='submit' id="login-button" className="submit stylish-btn">
           Login
         </Button>
         <Link className="already-signed-up" to='/register'>Sign up</Link>
